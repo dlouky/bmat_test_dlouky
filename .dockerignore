@@ -79,7 +79,7 @@ target/
 venv/
 
 # VS Code
-.vscode
+.vscode/
 
 # PyCharm
 .idea

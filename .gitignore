@@ -45,4 +45,7 @@ get-pip.py
 # Spyder 
 .spyproject/
 
+# VS code 
+.vscode/
+
 my_commands.sh

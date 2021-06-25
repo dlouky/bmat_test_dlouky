@@ -12,16 +12,17 @@ services:
       - POSTGRES_DB=dlouky
     ports:
       - 5432:5432
-  # web:
-  #   build: .
-  #   command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py createsuperuser --username dlouky --password dlouky && python manage.py runserver 0.0.0.0:8000"
-  #   volumes:
-  #     - .:/usr/src/app/
-  #   ports:
-  #     - 8000:8000
-  #   env_file:
-  #     - ./.env.dev
-  #   depends_on:
-  #     - db
+  web:
+    build: .
+    container_name: bmat_test_dlouky
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python -m django_createsuperuser 'dlouky' 'dlouky' && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/usr/src/app/
+    environment:
+      - DJANGO_SETTINGS_MODULE=bmat_project.settings
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
 volumes:
   postgres_data:

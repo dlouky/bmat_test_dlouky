@@ -1,0 +1,48 @@
+# Basics
+*.py[cod]
+__pycache__
+
+# Logs
+logs
+*.log
+pip-log.txt
+npm-debug.log*
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+htmlcov
+
+# Translations
+*.mo
+*.pot
+
+# Vim
+
+*~
+*.swp
+*.swo
+
+# virtual environments
+.env
+.venv/
+
+# User-uploaded media
+media/
+
+staticfiles/
+
+.cache/
+
+get-pip.py
+*.html.py
+*.txt.py
+
+# Docker Volume
+.data/
+
+# Spyder 
+.spyproject/
+
+my_commands.sh

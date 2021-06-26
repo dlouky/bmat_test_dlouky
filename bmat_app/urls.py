@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jun 25 18:34:46 2021
-
-@author: fmd
-"""
 from django.urls import path
 
 from .views import MusicalWorkDetail, MusicalWorkList

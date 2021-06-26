@@ -17,12 +17,11 @@ class MusicalWorkList(generics.ListAPIView):
 
 class MusicalWorkDetail(APIView):
     def get(self, request, format=None):
+        if "iswc" in request.GET:
+            iswc = request.GET["iswc"]
+            musical_work = MusicalWork.objects.filter(iswc=iswc).all()
+            musical_work_serializer = MusicalWorkSerializer(musical_work, many=True)
+            response = musical_work_serializer.data
+            response = json.loads(json.dumps(response))
+            return Response(response)
         return render(request, "search.html", {})
-
-    def post(self, request, format=None):
-        iswc = request.data["iswc"]
-        musical_work = MusicalWork.objects.filter(iswc=iswc).all()
-        musical_work_serializer = MusicalWorkSerializer(musical_work, many=True)
-        response = musical_work_serializer.data
-        response = json.loads(json.dumps(response))
-        return Response(response)

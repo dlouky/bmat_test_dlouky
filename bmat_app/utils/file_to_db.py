@@ -15,8 +15,8 @@ def import_from_csv(csv_file):
 
     for row in rows:
         metadata = {
-            "title": row[0],
-            "contributors": row[1].split("|"),
-            "iswc": row[2],
+            "title": row[0] if row[0].strip() else None,
+            "contributors": row[1].split("|") if row[1].strip() else [],
+            "iswc": row[2] if row[2].strip() else None,
         }
         work_to_db(metadata)

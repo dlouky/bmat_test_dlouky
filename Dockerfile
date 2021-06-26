@@ -6,8 +6,8 @@ WORKDIR /bmat_test
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 # install dependencies
-RUN pip install --upgrade cython
 RUN pip install --upgrade pip
+RUN pip install --upgrade cython
 COPY ./requirements.txt /bmat_test/
 RUN pip install -r requirements.txt
 # copy project

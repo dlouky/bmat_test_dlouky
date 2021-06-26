@@ -7,7 +7,7 @@
 
     <body>
         <br>
-        <form action="{% url "search_iswc" %}" method="POST"  class="form-horizontal">
+        <form action="{% url "search_iswc" %}" method="GET"  class="form-horizontal">
         {% csrf_token %}
             <div class="form-group">
                 <label for="name" class="col-md-3 col-sm-3 col-xs-12 control-label">ISWC: </label>

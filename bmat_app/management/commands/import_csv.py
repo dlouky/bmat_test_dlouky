@@ -9,13 +9,13 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
             "csv_file",
-            nargs="?",
+            nargs=1,
             type=str,
             help="csv file with metadata to create the Works Single View",
         )
 
     def handle(self, *args, **kwargs):
-        filename = kwargs["csv_file"]
+        filename = kwargs["csv_file"][0]
 
         try:
             with open(filename, "r") as csv_file:

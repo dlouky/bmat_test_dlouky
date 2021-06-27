@@ -11,7 +11,7 @@ class Command(BaseCommand):
             "csv_file",
             nargs=1,
             type=str,
-            help="csv file with metadata to create the Works Single View",
+            help="CSV file with metadata to create the Works Single View",
         )
 
     def handle(self, *args, **kwargs):
@@ -21,8 +21,8 @@ class Command(BaseCommand):
             with open(filename, "r") as csv_file:
                 import_from_csv(csv_file)
         except (IOError, OSError):
-            raise CommandError('File "%s" does not exist' % filename)
+            raise CommandError('File "%s" does not exist!!' % filename)
 
         self.stdout.write(
-            self.style.SUCCESS(f"Successfully imported from {filename}!!")
+            self.style.SUCCESS(f"Successfully imported metadata from {filename}!!")
         )

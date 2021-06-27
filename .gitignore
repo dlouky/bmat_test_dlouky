@@ -10,6 +10,7 @@ npm-debug.log*
 
 # Unit test / coverage reports
 .coverage
+.coveragerc
 .tox
 nosetests.xml
 htmlcov

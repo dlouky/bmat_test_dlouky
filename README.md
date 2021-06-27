@@ -1,13 +1,10 @@
+[![license: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/dlouky/bmat_test_dlouky/blob/master/LICENSE)
 # Musical Works Single View
 
-<font color=green>
-    - <span style="text-decoration:underline"> Author:</span> Dlouky Federico Manuel </font><br><br>
-
-### Summary
 This repository provides the code and instructions to deploy a `Works Single View` application to aggregate and reconcile musical metada from a CSV file to a [PostgreSQL](https://www.postgresql.org/) database. This application can also be used to query the database given an [ISWC](https://en.wikipedia.org/wiki/International_Standard_Musical_Work_Code).
 <br><br>
 
-## **INSTRUCTIONS**
+## **Instructions**
 1. Install [Docker](https://docs.docker.com/engine/install/) and [Docker-compose](https://docs.docker.com/compose/install/).
 1. Install [Git](https://github.com/git-guides/install-git).
 1. Clone this repo and navigate into it:
@@ -22,7 +19,7 @@ This repository provides the code and instructions to deploy a `Works Single Vie
 1. Go to [http://localhost:8000/](http://localhost:8000/) in your browser. You will see the `Musical Work List` which shows Musical Works present in the PostgreSQL database. It is empty right now because it is the first time you run the app.
 <br><br>
 
-## **PART 1**
+## **Part 1**
 To import metadata from a CSV file, a [custom django-admin command](https://docs.djangoproject.com/en/3.2/howto/custom-management-commands/) has been created. In your terminal, execute:
 ```bash
 docker exec -it bmat_test_dlouky bash -c "python manage.py import_csv ./metadata_csv/works_metadata.csv"
@@ -47,7 +44,7 @@ Go to http://localhost:8000/ again. Now the `Musical Work List` shows the reconc
     
     I would implement a solution-oriented to cloud computing. I would create a Rest API that allows the provider to upload the files with metadata to `S3 on AWS` and I would enqueue the task in an `SQS` (Simple Queue Service). That way I would have the pending tasks there. With `Docker`, I would create a service that connects to SQS to read the task that contains the reference (ARN) to the file saved in S3. With that ARN, I would download the file to a local folder and run the `custom django-admin command` (in this case, if the file with metadata is a CSV, I would download it to the `/metadata_csv` folder and run the command mentioned in **PART 1**). In local I would create a `Bash script` that detects if a new file is downloaded and automatically execute the command.
 <br><br>
-## **PART 2**
+## **Part 2**
 
 * OPTION 1: Go to `http://localhost:8000/<iswc>` to get the work with specified *\<iswc\>* in JSON format. E.g. [http://localhost:8000/T9204649558/](http://localhost:8000/T9204649558/) or if you need raw JSON: [http://localhost:8000/T9204649558/?format=json](http://localhost:8000/T9204649558/?format=json) <br><br>
 * OPTION 2: Go to [http://localhost:8000/search_iswc/](http://localhost:8000/search_iswc/) and enter the `iswc` in the form to query the `Works Single View` in order to get the work with that *iswc* in JSON format. 
@@ -72,7 +69,7 @@ If no work matches with the specified *iswc*, an empty JSON ([]) is returned.
 
 <br>
 
-## **TESTING**
+## **Testing**
 Some tests have been made in `bmat_app/tests`, run the tests with:
 ```bash
 docker exec -it bmat_test_dlouky bash -c "coverage run --omit '.venv/*' --source='.' manage.py test bmat_app -v 2 && coverage html"
@@ -82,12 +79,13 @@ To get a test report:
 docker exec -it bmat_test_dlouky bash -c "coverage report --omit '.venv/*'"
 ```
 
-## **IMPROVEMENTS**
+## **Improvements**
 Many improvements could be made to the project, some of these are listed below
 1. Cover 100% of tests (see coverage report)
 1. Create a frontend to make the tool more user friendly
 1. Implement [security](https://docs.djangoproject.com/en/3.2/topics/security/)
-1. Set environment variables via django-environ and database configration via DATABASE_URL. Use django-aws-secrets-manager to manage the secret values used by Django through AWS's SecretsManager service 
+1. Set environment variables via django-environ and database configration via DATABASE_URL. Use django-aws-secrets-manager to manage the secret values used by Django through AWS's SecretsManager service
+1. For production, I would follow [this steps](https://realpython.com/development-and-deployment-of-cookiecutter-django-via-docker/) to deploy [Nginx](https://nginx.org/) as the web server along with [Gunicorn](https://gunicorn.org/) instead of Django’s single-threaded development server to run the server process.
 
 ## **Stop and remove all**
 To stop and remove the Docker images and containers:
@@ -100,3 +98,11 @@ Finally remove Docker named volumes and network
 docker volume prune \
 && docker network prune
 ```
+
+## **Authors**
+
+* **Federico Manuel Dlouky** - *Initial work* - [dlouky](https://github.com/dlouky)
+
+## **License**
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details

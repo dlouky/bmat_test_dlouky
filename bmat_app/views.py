@@ -26,7 +26,8 @@ class MusicalWorkDetail(APIView):
             return Response(response)
         return render(request, "search.html", {})
 
+
 class MusicalWorkDetailBrowsableAPI(generics.RetrieveAPIView):
     queryset = MusicalWork.objects.all()
     serializer_class = MusicalWorkSerializer
-    lookup_field = 'iswc'
+    lookup_field = "iswc"

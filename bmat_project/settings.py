@@ -78,7 +78,7 @@ WSGI_APPLICATION = "bmat_project.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql", # database driver, same as django.db.backends.postgresql_psycopg2 since Django 1.9
+        "ENGINE": "django.db.backends.postgresql",  # database driver, same as django.db.backends.postgresql_psycopg2 since Django 1.9
         "NAME": "dlouky",
         "PASSWORD": "dlouky",
         "USER": "dlouky",

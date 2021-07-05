@@ -61,6 +61,6 @@ class TestCommands(TestCase):
         for work_tm in test_metadata:
             work_db = MusicalWork.objects.get(title=work_tm["title"]).__dict__
             work_db.pop("_state")
-            work_db.pop("uid")
+            work_db.pop("id")
             work_tm["contributors"] = work_tm["contributors"].split("|")
             assert work_db == work_tm

@@ -6,4 +6,4 @@ from bmat_app.models import MusicalWork
 class MusicalWorkSerializer(serializers.ModelSerializer):
     class Meta:
         model = MusicalWork
-        fields = ("uid", "title", "contributors", "iswc")
+        fields = ("id", "title", "contributors", "iswc")
